@@ -25,7 +25,13 @@ steps:
     projectFile: 'WalkingGameMG/Android/*Droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
-
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '$(outputDirectory)/*.apk'
+    apksignerKeystoreFile: 'debug.keystore'
+    apksignerKeystorePassword: 'android'
+    apksignerKeystoreAlias: 'androidebugkeystore'
+    apksignerKeyPassword: 'android'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(outputDirectory)'
